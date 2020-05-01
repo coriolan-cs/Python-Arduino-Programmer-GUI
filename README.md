@@ -10,6 +10,6 @@ Instructions:
 - Click on Flash. This will compile the code and upload it.
 
 TO DO:
-[] Send output of the installation and flash scripts to the debug output
-[] Add a drop-down menu to select which microcontroller to use
-[] Detect if a .hex file has been chosen and uploadid directly rather than compiling first
+- [] Send output of the installation and flash scripts to the debug output
+- [] Add a drop-down menu to select which microcontroller to use
+-[] Detect if a .hex file has been chosen and uploadid directly rather than compiling first
