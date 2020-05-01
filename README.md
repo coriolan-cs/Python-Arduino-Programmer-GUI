@@ -9,6 +9,16 @@ Instructions:
 - Select the correct COM port
 - Click on Flash. This will compile the code and upload it.
 
+To build from scratch:
+- `pip install PyQt5`
+- `pip install pyserial`
+- `pip install subprocess.run`
+- `pip install pyinstaller`
+- Download the source, got to the folder of the source, and type:
+- `pyinstaller --onefile -w ArduinoFlasher_1.0.py`
+
+After a minute, a .exe will be created in the dist folder. You can remove the other folder.
+
 ![Screenshot](/Source/GUI.PNG)
 
 TO DO:
@@ -16,3 +26,5 @@ TO DO:
 - [ ] Add a drop-down menu to select which microcontroller to use
 - [ ] Detect if a .hex file has been chosen and uploadid directly rather than compiling first
 - [ ] Test compatibility on Mac and Linux
+
+Let me know if you find any bugs!
