@@ -2,12 +2,15 @@
 A python GUI to flash Arduinos
 
 This is an Windows Arduino compiler and flasher program that I did as an exercise. It uses Python3 and PyQT5. 
-Instructions:
+
+Instructions to use:
 - Click on Install Tool to download and install the latest version of arduino-cli
 - Browse the .ino file
 - Input the target ID. This will be written in a file called _ID.H, if it exists.
 - Select the correct COM port
 - Click on Flash. This will compile the code and upload it.
+
+The ID thing makes sense in a scenario where you have an installation with hundreds of microcontrollers, each having their own ID. In your IDE, make sure you define the ID in the code as "NODE_ID". Place the definition (#define NODE_ID 24 for example) in that file. Do not put antything else in the file, as the file will be rewritten and the contents deleted.
 
 To build from scratch:
 - `pip install PyQt5`
