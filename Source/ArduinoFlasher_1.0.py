@@ -18,13 +18,12 @@ from PyQt5.QtGui import QIcon
 
 #Below definitions
 node_ID_string = '#define NODE_ID'
-program_path = 'Arduino-Flasher-Project/Firmware_V4/'
+program_path = '/'
 
 compiler = 'arduino-cli'
 flag1_compile = 'compile'
 flag2_boardname1 = '-b'
 flag3_boardname2 = 'arduino:avr:uno'
-flag4_program_path = 'program_path'
 flag5_verbose = '-v'
 
 flag1_upload = 'upload'
@@ -212,26 +211,42 @@ class Ui_MainWindow(QWidget):
         if fileName:
             print(fileName)
             self.label_fileChosen.setText(fileName)
+            global program_path
+            program_path = fileName
+            print("Program path: ", program_path)
 
 
     # If change ID, write ID in file
     def valueIDchange(self):
         print("current value:"+str(self.spinBox_ID.value()))   
+
+        print("Program path: ", program_path)
+        
         #file = open(“/Firmware_V4/_ID.h”,”w”)
-        cwd = os.getcwd()
+        if program_path != '/':
+            print("Using selected path")
+            program_path_dir = "/".join(program_path.split("/")[:-1])
+            print("Program path dir: ", program_path_dir)
+            cwd = program_path_dir
+            
+
+        if program_path == '/':
+            print ("File not selected / not present. Will not write ID")
+            self.textEdit.setText("File not selected / not present. Will not write ID")
+            return
+        
         files = os.listdir(cwd)  # Get all the files in that directory
+
         print("Files in %r: %s" % (cwd, files))
         #file1 = open('Arduino-Flasher-Project/Firmware_V4/_ID.h', 'w')
 
-        if os.path.isfile(program_path + '_ID.h'):
+        if os.path.isfile(program_path_dir + '/_ID.h'):
             print ("File exist")
-            with open((program_path + '_ID.h'), "w") as file1:
+            with open((program_path_dir + '/_ID.h'), "w") as file1:
                 file1.write(node_ID_string + ' ' + str(self.spinBox_ID.value()))
                 print("#define ID ", str(self.spinBox_ID.value()))
                 self.textEdit.setText("Wrote in file #define ID " + str(self.spinBox_ID.value()))
-        else:
-            print ("File do not exist")
-            self.textEdit.setText("File do not exist. Will not write ID")
+        
 
 
     
@@ -259,9 +274,15 @@ class Ui_MainWindow(QWidget):
     def FlashButtonPressed(self):
         print("FLASH button pressed")
 
+        self.refreshComPortPressed()
         if(len(listReturned) == 0):
             print("No COM port found")
             self.textEdit.setText("No COM port foud!")
+            return
+
+        if program_path == '/':
+            print("Select .ino file to flash first")
+            self.textEdit.setText("Select .ino file to flash first")
             return
             
         self.textEdit.setText("Compiling...")
