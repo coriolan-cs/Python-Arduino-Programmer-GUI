@@ -9,6 +9,8 @@ Instructions:
 - Select the correct COM port
 - Click on Flash. This will compile the code and upload it.
 
+![Screenshot](/Source/GUI.PNG)
+
 TO DO:
 - [ ] Send output of the installation and flash scripts to the debug output
 - [ ] Add a drop-down menu to select which microcontroller to use
