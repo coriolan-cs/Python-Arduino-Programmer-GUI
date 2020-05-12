@@ -12,6 +12,8 @@ Instructions to use:
 
 The ID thing makes sense in a scenario where you have an installation with hundreds of microcontrollers, each having their own ID. In your IDE, make sure you define the ID in the code as "NODE_ID". Place the definition (#define NODE_ID 24 for example) in that file. Do not put antything else in the file, as the file will be rewritten and the contents deleted.
 
+You can download the .exe file from the Release section or build it from the source code.
+
 To build from scratch:
 - `pip install PyQt5`
 - `pip install pyserial`
